@@ -7,7 +7,8 @@ import java.util.Scanner;
 public class StandardMain implements IOSource {
 
     public static void main(String[] args) {
-        Engine eng = new Engine(new StandardMain());
+        Engine.source = new StandardMain();
+        Engine eng = new Engine();
         eng.run();
     }
 

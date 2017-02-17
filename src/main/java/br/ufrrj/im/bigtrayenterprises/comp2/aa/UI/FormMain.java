@@ -11,10 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.Semaphore;
 
-/**
- * Created by vitorhnn on 15/02/17.
- */
 public class FormMain implements IOSource, ActionListener {
+    // There might be syncronization issues related to the way I'm duct taping
+    // this GUI into the IOSource system.
+    // but hopefully those were fixed by the semaphores
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("FormMain");
         FormMain frm = new FormMain();
@@ -25,18 +26,14 @@ public class FormMain implements IOSource, ActionListener {
         frame.setSize(300, 300);
 
 
-        Engine eng = new Engine(frm);
+        Engine eng = new Engine();
+        Engine.source = frm;
         eng.run();
     }
 
     public FormMain() {
         chosenChoice = 0;
         chosenSemaphore = new Semaphore(1);
-        try {
-            chosenSemaphore.acquire();
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
 
         // needed because IDEA is stupid
         buttonsPane.setLayout(new BoxLayout(buttonsPane, BoxLayout.Y_AXIS));

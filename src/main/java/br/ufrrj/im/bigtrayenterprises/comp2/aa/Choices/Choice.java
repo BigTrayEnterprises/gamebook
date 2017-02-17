@@ -15,7 +15,7 @@ public abstract class Choice {
         return this.description;
     }
 
-    public void defineNumber(int number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 

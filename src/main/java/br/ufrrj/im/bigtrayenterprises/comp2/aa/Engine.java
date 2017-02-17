@@ -24,10 +24,6 @@ public class Engine {
 
     public static IOSource source;
 
-    public Engine(IOSource source) {
-        this.source = source;
-    }
-
     public void run() {
         Book book = Engine.testBook();
 
@@ -37,8 +33,6 @@ public class Engine {
 
         do {
             source.printString(book.showHistory());
-
-            source.printString("Escolha.");
 
             for (Choice choice : book.nextEvents()) {
                 source.addChoice(choice);
